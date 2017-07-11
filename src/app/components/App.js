@@ -12,7 +12,8 @@ export class App extends React.Component {
                 {id: 1, firstName: "Fred"},
                 {id: 2, firstName: "Bill"},
                 {id: 3, firstName: "Alex"},
-                {id: 4, firstName: "Sarah"}
+                {id: 4, firstName: "Sarah"},
+                {id: 5, firstName: "Sue"},
             ]
         };
     }
