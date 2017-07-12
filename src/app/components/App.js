@@ -1,21 +1,12 @@
 import React from "react";
-
+import {connect} from "react-redux";
 import {ContactForm} from "./ContactForm";
 import {ContactRow} from "./ContactRow";
 
-export class App extends React.Component {
+class App extends React.Component {
     
     constructor() {
         super();
-        this.state = {
-            contacts: [
-                {id: 1, firstName: "Fred"},
-                {id: 2, firstName: "Bill"},
-                {id: 3, firstName: "Alex"},
-                {id: 4, firstName: "Sarah"},
-                {id: 5, firstName: "Sue"},
-            ]
-        };
     }
     
     addContact(contact) {
@@ -43,7 +34,7 @@ export class App extends React.Component {
                             </thead>
                             <tbody>
                                 {
-                                    this.state.contacts.map((contact) => {
+                                    this.props.contacts.map((contact) => {
                                         return <ContactRow key={contact.id} contact={contact}/>;
                                     })
                                 }
@@ -63,7 +54,21 @@ export class App extends React.Component {
 };
 
 const mapStateToProps = (state) => {
+    console.log('hello');
     return {
         contacts: state.contacts
     };
-}
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addContact: (contact) => {
+            dispatch({
+                type: "ADD_CONTACT",
+                payload: contact
+            });
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
