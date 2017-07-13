@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {ContactForm} from "./ContactForm";
-import {ContactRow} from "./ContactRow";
+import {ContactRow} from "../components/ContactRow";
 
 class App extends React.Component {
     
