@@ -5,20 +5,6 @@ import {ContactRow} from "./ContactRow";
 
 class App extends React.Component {
     
-    constructor() {
-        super();
-    }
-    
-    addContact(contact) {
-        var contacts = this.state.contacts.slice();
-        contacts.push(contact);
-        console.log(contacts);
-        this.setState({
-            contacts: contacts
-        });
-        console.log(this.state);
-    }
-
     render() {
         return(
             <div className="container">
@@ -45,7 +31,7 @@ class App extends React.Component {
                 
                 <div className="row">
                     <div className="col-xs-10 col-xs-offset-1">
-                        <ContactForm addContact={this.addContact.bind(this)}/>        
+                        <ContactForm addContact={this.props.addContact}/>        
                     </div>
                 </div>
             </div>
