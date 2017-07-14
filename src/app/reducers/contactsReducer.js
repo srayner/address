@@ -4,7 +4,8 @@ const initialState = {
         {id: '2',  firstName: 'Bill'},
         {id: '3',  firstName: 'Hayley'},
         {id: '4',  firstName: 'Sookie'}
-    ]
+    ],
+    selected: '3'
 };
 
 const contactsReducer = (state = initialState, action) => {
@@ -13,6 +14,12 @@ const contactsReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 contacts: [...state.contacts, action.payload]
+            };
+            break;
+        case "SELECT_CONTACT":
+            state = {
+                ...state,
+                selected: action.payload
             };
             break;
     }

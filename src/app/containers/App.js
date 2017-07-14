@@ -26,7 +26,18 @@ class App extends React.Component {
                             <tbody>
                                 {
                                     this.props.contacts.map((contact) => {
-                                        return <ContactRow key={contact.id} contact={contact}/>;
+                                        var rowClass='';
+                                        if (this.props.selected === contact.id) {
+                                            rowClass = 'selected';
+                                        }
+                                        return (
+                                            <ContactRow
+                                                key={contact.id}
+                                                contact={contact}
+                                                rowClass={rowClass}
+                                                selectContact={this.props.selectContact}
+                                            />
+                                        );
                                     })
                                 }
                             </tbody>
@@ -44,7 +55,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     console.log('hello');
     return {
-        contacts: state.contacts
+        contacts: state.contacts,
+        selected: state.selected
     };
 };
 
@@ -54,6 +66,12 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: "ADD_CONTACT",
                 payload: contact
+            });
+        },
+        selectContact: (id) => {
+            dispatch({
+                type: "SELECT_CONTACT",
+                payload: id
             });
         }
     };
