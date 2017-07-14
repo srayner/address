@@ -5,6 +5,7 @@ export const ContactRow = (props) => {
             <tr>
                 <td>{props.contact.firstName}</td>
                 <td>{props.contact.lastName}</td>
+                <td>{props.contact.email}</td>
             </tr>
     );
 };

@@ -7,7 +7,8 @@ export class ContactForm extends React.Component {
         this.state = {
             title: "",
             firstName: "",
-            lastName: ""
+            lastName: "",
+            email: ""
         };
     };
     
@@ -22,9 +23,14 @@ export class ContactForm extends React.Component {
             id: this.guid(),
             title: this.state.title,
             firstName: this.state.firstName,
-            lastName: this.state.lastName
+            lastName: this.state.lastName,
+            email: this.state.email
         };
         this.props.addContact(contact);
+    }
+    
+    onDelete() {
+        
     }
     
     guid() {
@@ -40,42 +46,71 @@ export class ContactForm extends React.Component {
     
     render() {
         return (
-            <form>
+            <form className="form-horizontal">
                 <div className="form-group">
-                    <label>Title:</label>
-                    <input 
-                        type="text"
-                        name="title"
-                        className="form-control"
-                        value={this.state.title}
-                        onChange={(event) => this.onChange(event)}
-                    />
+                    <label className="control-label col-sm-4">Title</label>
+                    <div className="col-sm-8">
+                        <input 
+                            type="text"
+                            name="title"
+                            className="form-control"
+                            value={this.state.title}
+                            onChange={(event) => this.onChange(event)}
+                        />
+                    </div>
                 </div>
                 <div className="form-group">
-                    <label>First Name</label>
-                    <input 
-                        type="text"
-                        name="firstName"
-                        className="form-control"
-                        value={this.state.firstName}
-                        onChange={(event) => this.onChange(event)}
-                    />
+                    <label className="control-label col-sm-4">First Name</label>
+                    <div className="col-sm-8">
+                        <input 
+                            type="text"
+                            name="firstName"
+                            className="form-control"
+                            value={this.state.firstName}
+                            onChange={(event) => this.onChange(event)}
+                        />
+                    </div>
                 </div>
                 <div className="form-group">
-                    <label>Last Name</label>
-                    <input 
-                        type="text"
-                        name="lastName"
-                        className="form-control"
-                        value={this.state.lastName}
-                        onChange={(event) => this.onChange(event)}
-                    />
+                    <label className="control-label col-sm-4">Last Name</label>
+                    <div className="col-sm-8">
+                        <input 
+                            type="text"
+                            name="lastName"
+                            className="form-control"
+                            value={this.state.lastName}
+                            onChange={(event) => this.onChange(event)}
+                        />
+                    </div>
                 </div>
-                <button 
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={this.onSubmit.bind(this)}
-                >Submit</button>
+                <div className="form-group">
+                    <label className="control-label col-sm-4">Email</label>
+                    <div className="col-sm-8">
+                        <input 
+                            type="text"
+                            name="email"
+                            className="form-control"
+                            value={this.state.email}
+                            onChange={(event) => this.onChange(event)}
+                        />
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div className="col-sm-offset-4 col-sm-8">
+                        <div className="btn-toolbar">
+                            <button 
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={this.onSubmit.bind(this)}
+                            >Save</button>
+                            <button 
+                                type="button"
+                                className="btn btn-danger"
+                                onClick={this.onDelete.bind(this)}
+                            >Delete</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         );
     }

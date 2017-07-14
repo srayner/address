@@ -9,13 +9,18 @@ class App extends React.Component {
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1">
+                    <div className="col-xs-12">
                         <h2>Contacts</h2>
-                        <table className="table table-bordered">
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xs-6">
+                        <table className="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>First Name</th>
                                     <th>Last Name</th>
+                                    <th>Email</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,10 +32,7 @@ class App extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                </div>
-                
-                <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1">
+                    <div className="col-xs-6">
                         <ContactForm addContact={this.props.addContact}/>        
                     </div>
                 </div>

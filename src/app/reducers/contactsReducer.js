@@ -10,11 +10,9 @@ const initialState = {
 const contactsReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD_CONTACT":
-            var contacts = state.contacts.slice();
-            contacts.push(action.payload);
             state = {
                 ...state,
-                contacts: contacts
+                contacts: [...state.contacts, action.payload]
             };
             break;
     }
