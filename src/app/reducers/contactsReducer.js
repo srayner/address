@@ -5,7 +5,8 @@ const initialState = {
         {id: '3',  firstName: 'Hayley'},
         {id: '4',  firstName: 'Sookie'}
     ],
-    selected: '3'
+    selected: {id: '1',  firstName: 'Fred'},
+    editing: false
 };
 
 const contactsReducer = (state = initialState, action) => {
@@ -20,6 +21,12 @@ const contactsReducer = (state = initialState, action) => {
             state = {
                 ...state,
                 selected: action.payload
+            };
+            break;
+        case "EDIT_MODE":
+            state = {
+                ...state,
+                editing: action.payload    
             };
             break;
     }

@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {ContactForm} from "./ContactForm";
 import {ContactRow} from "../components/ContactRow";
+import {ContactDetail} from "../components/ContactDetail";
 
 class App extends React.Component {
     
@@ -27,8 +28,8 @@ class App extends React.Component {
                                 {
                                     this.props.contacts.map((contact) => {
                                         var rowClass='';
-                                        if (this.props.selected === contact.id) {
-                                            rowClass = 'selected';
+                                        if (this.props.selected.id === contact.id) {
+                                            rowClass = 'info';
                                         }
                                         return (
                                             <ContactRow
@@ -43,9 +44,19 @@ class App extends React.Component {
                             </tbody>
                         </table>
                     </div>
+                    {!this.props.editing && 
+                        <div className="col-xs-6">
+                            <ContactDetail editMode={this.props.editMode} contact={this.props.selected}/>        
+                        </div>
+                    }
+                    {this.props.editing &&
                     <div className="col-xs-6">
-                        <ContactForm addContact={this.props.addContact}/>        
+                        <ContactForm
+                            addContact={this.props.addContact}
+                            editMode={this.props.editMode}
+                        />        
                     </div>
+                    }
                 </div>
             </div>
         );
@@ -56,7 +67,8 @@ const mapStateToProps = (state) => {
     console.log('hello');
     return {
         contacts: state.contacts,
-        selected: state.selected
+        selected: state.selected,
+        editing: state.editing
     };
 };
 
@@ -73,7 +85,13 @@ const mapDispatchToProps = (dispatch) => {
                 type: "SELECT_CONTACT",
                 payload: id
             });
-        }
+        },
+        editMode: (editing) => {
+            dispatch({
+                type: "EDIT_MODE",
+                payload: editing
+            });
+        } 
     };
 };
 

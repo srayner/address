@@ -105,9 +105,11 @@ export class ContactForm extends React.Component {
                             >Save</button>
                             <button 
                                 type="button"
-                                className="btn btn-danger"
-                                onClick={this.onDelete.bind(this)}
-                            >Delete</button>
+                                className="btn btn-default"
+                                onClick={() => {
+                                    this.props.editMode(false);
+                                }}
+                            >Cancel</button>
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import React from "react";
 export const ContactRow = (props) => {
     return(
             <tr className={props.rowClass} onClick={() => {
-                props.selectContact(props.contact.id);
+                props.selectContact(props.contact);
             }}>
                 <td>{props.contact.firstName}</td>
                 <td>{props.contact.lastName}</td>
