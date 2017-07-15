@@ -5,7 +5,7 @@ const initialState = {
         {id: '3',  firstName: 'Hayley'},
         {id: '4',  firstName: 'Sookie'}
     ],
-    selected: {id: '1',  firstName: 'Fred'},
+    selected: 0,
     editing: false
 };
 
@@ -17,10 +17,20 @@ const contactsReducer = (state = initialState, action) => {
                 contacts: [...state.contacts, action.payload]
             };
             break;
+        case "REMOVE_CONTACT":
+            state = {
+                ...state,
+                contacts: state.contacts.filter(contact => action.payload !== contact),
+            }
+            if (state.selected > state.contacts.length - 1) {
+                state.selected = state.contacts.length - 1;
+            }
+            console.log(state.selected);
+            break;
         case "SELECT_CONTACT":
             state = {
                 ...state,
-                selected: action.payload
+                selected: state.contacts.findIndex(contact => action.payload === contact),
             };
             break;
         case "EDIT_MODE":

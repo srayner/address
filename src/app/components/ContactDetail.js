@@ -29,7 +29,7 @@ export const ContactDetail = (props) => {
                 <button
                     className="btn btn-danger"
                     onClick={() => {
-                        props.editMode(true);
+                        props.removeContact(props.contact);
                     }}
                 >Delete</button>
             </div>

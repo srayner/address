@@ -28,7 +28,7 @@ class App extends React.Component {
                                 {
                                     this.props.contacts.map((contact) => {
                                         var rowClass='';
-                                        if (this.props.selected.id === contact.id) {
+                                        if (this.props.contacts[this.props.selected].id === contact.id) {
                                             rowClass = 'info';
                                         }
                                         return (
@@ -44,9 +44,13 @@ class App extends React.Component {
                             </tbody>
                         </table>
                     </div>
-                    {!this.props.editing && 
+                    {!this.props.editing && (this.props.selected >= 0) && 
                         <div className="col-xs-6">
-                            <ContactDetail editMode={this.props.editMode} contact={this.props.selected}/>        
+                            <ContactDetail
+                                contact={this.props.contacts[this.props.selected]}
+                                editMode={this.props.editMode}
+                                removeContact={this.props.removeContact}
+                            />        
                         </div>
                     }
                     {this.props.editing &&
@@ -77,6 +81,12 @@ const mapDispatchToProps = (dispatch) => {
         addContact: (contact) => {
             dispatch({
                 type: "ADD_CONTACT",
+                payload: contact
+            });
+        },
+        removeContact: (contact) => {
+            dispatch({
+                type: "REMOVE_CONTACT",
                 payload: contact
             });
         },
